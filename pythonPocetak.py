@@ -1,6 +1,6 @@
 class Karta(object):
 #dvorana, redovi, mjesta u redovima
-    __karte_info - {1:('A',8,10),
+    __karta_info = {1:('A',8,10),
                     2:('B',5,6),
                     3:('C',12,20),
                     4:('D',23,12),
@@ -18,13 +18,13 @@ class Karta(object):
     
     @staticmethod
     def brojevi():
-        return  Karta.__karte_info.keys()
+        return Karta.__karta_info.keys()
 
     @staticmethod
-    def vrsta():
+    def vrste():
         return list(Karta.__vrsta_karte)
 
-    def __init__(self,broj,vrsta,dostupna-false):
+    def __init__(self,broj,vrsta,dostupna = False):
         self.__broj=broj
         self.__vrsta=vrsta
         self.__dostupna=dostupna
@@ -56,6 +56,16 @@ class Karta(object):
     @dostupna.setter
     def dostupna(self,value):
         self.__dostupna=value
+
+    def __repr__(self):
+        return self.__class__.__name__ + '(%r, %r, %r)' % (self.__broj, self.__vrsta, self.__dostupna)
+
+    def __str__(self):
+        return self.vrsta.title() + ' ' + self.vrsta
+
+for vrsta in Karta.vrste():
+    for broj in Karta.brojevi():
+        k = Karta (broj, vrsta)
+        print('%r %s %d %d' % (k, k, k.red, k.mjesto))
     
-    
-    
+
